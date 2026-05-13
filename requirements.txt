@@ -1,0 +1,31 @@
+# Istanbul Traffic Density Prediction - Dependencies
+# Phase 1: Road geometry & geohash
+osmnx==2.0.1
+pygeohash==1.2.0
+
+# Phase 2: Data processing
+duckdb==1.2.2
+pandas==2.2.3
+numpy==1.26.4
+scipy==1.14.1
+holidays==0.65
+httpx==0.28.1
+
+# Phase 3: ML models
+scikit-learn==1.6.1
+xgboost==2.1.4
+lightgbm==4.5.0
+joblib==1.4.2
+
+# Phase 4: Production API
+fastapi==0.115.12
+uvicorn==0.34.2
+pydantic==2.11.1
+
+# Phase 5: Dashboard
+streamlit==1.45.0
+folium==0.19.5
+streamlit-folium==0.25.0
+
+# Parquet support
+pyarrow==19.0.1

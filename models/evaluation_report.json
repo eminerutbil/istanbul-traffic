@@ -1,0 +1,317 @@
+{
+  "created_at": "2026-05-12T11:40:57",
+  "random_state": 42,
+  "data_info": {
+    "train_rows": 400000,
+    "val_rows": 198827,
+    "test_rows": 181569,
+    "feature_count": 33
+  },
+  "regression": {
+    "best_model": "XGBoost",
+    "all_models": {
+      "RandomForest": {
+        "best_params": {
+          "n_estimators": "100",
+          "max_depth": "10"
+        },
+        "val": {
+          "RMSE": 0.0883
+        },
+        "test": {
+          "RMSE": 0.1033,
+          "MAE": 0.0692,
+          "R2": 0.8178,
+          "MAPE": 19.14
+        }
+      },
+      "XGBoost": {
+        "best_params": {
+          "n_estimators": "300",
+          "max_depth": "6",
+          "learning_rate": "0.1",
+          "subsample": "0.8",
+          "colsample_bytree": "0.8",
+          "device": "cuda",
+          "tree_method": "hist"
+        },
+        "val": {
+          "RMSE": 0.0841
+        },
+        "test": {
+          "RMSE": 0.1017,
+          "MAE": 0.07,
+          "R2": 0.8233,
+          "MAPE": 19.15
+        }
+      },
+      "LightGBM": {
+        "best_params": {
+          "n_estimators": "300",
+          "max_depth": "15",
+          "learning_rate": "0.05",
+          "subsample": "0.8",
+          "colsample_bytree": "0.8",
+          "device": "gpu"
+        },
+        "val": {
+          "RMSE": 0.0854
+        },
+        "test": {
+          "RMSE": 0.1018,
+          "MAE": 0.07,
+          "R2": 0.823,
+          "MAPE": 19.26
+        }
+      }
+    },
+    "feature_importance_top15": [
+      {
+        "feature": "cs_lag_1h",
+        "importance": 0.5451
+      },
+      {
+        "feature": "is_night",
+        "importance": 0.1444
+      },
+      {
+        "feature": "cs_lag_24h",
+        "importance": 0.0461
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 0.0398
+      },
+      {
+        "feature": "hour",
+        "importance": 0.0342
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.0313
+      },
+      {
+        "feature": "hour_cos",
+        "importance": 0.02
+      },
+      {
+        "feature": "day_of_week",
+        "importance": 0.0133
+      },
+      {
+        "feature": "month",
+        "importance": 0.0108
+      },
+      {
+        "feature": "dow_sin",
+        "importance": 0.0103
+      },
+      {
+        "feature": "dow_cos",
+        "importance": 0.0099
+      },
+      {
+        "feature": "is_holiday",
+        "importance": 0.0089
+      },
+      {
+        "feature": "week_of_year",
+        "importance": 0.0076
+      },
+      {
+        "feature": "is_rush_hour",
+        "importance": 0.0071
+      },
+      {
+        "feature": "rolling_mean_3h",
+        "importance": 0.006
+      }
+    ]
+  },
+  "classification": {
+    "best_model": "XGBoost_clf",
+    "production_strategy": "regression_first_with_threshold_fallback",
+    "all_models": {
+      "LogisticRegression_baseline": {
+        "note": "Baseline.",
+        "best_params": {
+          "C": "1.0",
+          "max_iter": "1000",
+          "class_weight": "balanced"
+        },
+        "val": {
+          "f1_weighted": 0.7429
+        },
+        "test": {
+          "accuracy": 0.7333,
+          "f1_weighted": 0.7306,
+          "f1_macro": 0.738,
+          "f1_per_class": {
+            "Akici": 0.7484,
+            "Kilit": 0.7585,
+            "Yogun": 0.707
+          },
+          "confusion_matrix": [
+            [
+              28911,
+              567,
+              9063
+            ],
+            [
+              258,
+              46814,
+              5296
+            ],
+            [
+              9554,
+              23685,
+              57421
+            ]
+          ]
+        }
+      },
+      "RandomForest_clf": {
+        "note": "",
+        "best_params": {
+          "n_estimators": "100",
+          "max_depth": "10",
+          "class_weight": "balanced"
+        },
+        "val": {
+          "f1_weighted": 0.8227
+        },
+        "test": {
+          "accuracy": 0.8116,
+          "f1_weighted": 0.811,
+          "f1_macro": 0.816,
+          "f1_per_class": {
+            "Akici": 0.8363,
+            "Kilit": 0.8118,
+            "Yogun": 0.7998
+          },
+          "confusion_matrix": [
+            [
+              33205,
+              213,
+              5123
+            ],
+            [
+              198,
+              46634,
+              5536
+            ],
+            [
+              7461,
+              15678,
+              67521
+            ]
+          ]
+        }
+      },
+      "XGBoost_clf": {
+        "note": "",
+        "best_params": {
+          "n_estimators": "300",
+          "max_depth": "8",
+          "learning_rate": "0.1",
+          "subsample": "0.8",
+          "colsample_bytree": "0.8",
+          "device": "cuda",
+          "tree_method": "hist",
+          "eval_metric": "mlogloss"
+        },
+        "val": {
+          "f1_weighted": 0.8563
+        },
+        "test": {
+          "accuracy": 0.846,
+          "f1_weighted": 0.846,
+          "f1_macro": 0.8459,
+          "f1_per_class": {
+            "Akici": 0.8492,
+            "Kilit": 0.8411,
+            "Yogun": 0.8475
+          },
+          "confusion_matrix": [
+            [
+              32545,
+              66,
+              5930
+            ],
+            [
+              133,
+              43925,
+              8310
+            ],
+            [
+              5432,
+              8090,
+              77138
+            ]
+          ]
+        }
+      },
+      "LightGBM_clf": {
+        "note": "",
+        "best_params": {
+          "n_estimators": "500",
+          "max_depth": "10",
+          "learning_rate": "0.1",
+          "subsample": "0.8",
+          "colsample_bytree": "0.8",
+          "device": "gpu"
+        },
+        "val": {
+          "f1_weighted": 0.8536
+        },
+        "test": {
+          "accuracy": 0.8431,
+          "f1_weighted": 0.8431,
+          "f1_macro": 0.843,
+          "f1_per_class": {
+            "Akici": 0.846,
+            "Kilit": 0.8381,
+            "Yogun": 0.8448
+          },
+          "confusion_matrix": [
+            [
+              32251,
+              69,
+              6221
+            ],
+            [
+              143,
+              43886,
+              8339
+            ],
+            [
+              5311,
+              8404,
+              76945
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "clustering": {
+    "best_k": 2,
+    "silhouette_score": 0.4551,
+    "cluster_profiles": [
+      {
+        "cluster_id": 0,
+        "label": "Highway_High_Traffic",
+        "count": 46,
+        "avg_speed": 62.89,
+        "avg_vehicles": 311.85
+      },
+      {
+        "cluster_id": 1,
+        "label": "Urban_Moderate",
+        "count": 45,
+        "avg_speed": 48.39,
+        "avg_vehicles": 127.36
+      }
+    ]
+  }
+}
